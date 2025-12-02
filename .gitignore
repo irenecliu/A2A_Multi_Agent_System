@@ -3,3 +3,5 @@ __pycache__/
 data/customer_service.db
 .ipynb_checkpoints/
 .DS_Store
+.env
+

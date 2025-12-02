@@ -1,52 +1,208 @@
-# Multi-Agent Customer Service (A2A + MCP)
+# Multi-Agent Customer Service System
 
-This is an agent2agent coordination with an MCP-backed customer data service. The Router Agent delegates to a Customer Data Agent (via MCP-style tools) and a Support Agent to handle routing, negotiation, and multi-step workflows.
+**(Agent-to-Agent Coordination + MCP-Backed Data Layer)**
 
-## Quickstart
-- Create and activate a virtual environment.
-- Install dependencies: `pip install -r requirements.txt`
-- Seed setup data: `python database_setup.py` (uses the dataset baked into `database_setup.py`)
-- Start the MCP server: `python mcp_server.py`
-- Run the end-to-end scenarios: `python run_demo.py`. This runs all five queries that required in the assignment test scenario.
+This project implements a practical **multi-agent customer service system** using **Agent-to-Agent (A2A) coordination** and an **MCP-backed customer data service**. The system is composed of three specialized agents:
 
-## Project Structure
-- `database_setup.py` – builds the SQLite database with demo customers and tickets.
-- `db.py` – shared SQLite helpers used by both the MCP tools and agents.
-- `mcp_server.py` – FastMCP server exposing data tools.
-- `agents/base.py` – simple message object and logger for A2A transcripts.
-- `agents/customer_data_agent.py` – specialist agent that wraps MCP data access.
-- `agents/support_agent.py` – specialist agent for responses, escalation, and reporting.
-- `agents/router_agent.py` – orchestrator handling routing, negotiation, and multi-step flows.
-- `run_demo.py` – runs the required scenarios and prints the agent-to-agent transcript.
+* **Router Agent (Orchestrator)** – receives all user queries, analyzes intent, and coordinates multi-step workflows.
+* **Customer Data Agent (Specialist)** – accesses the SQLite customer database exclusively via MCP-style tools.
+* **Support Agent (Specialist)** – generates user-facing responses, handles escalation, and summarizes results.
 
-## How to Start and Create virtual environment
+Together, these agents demonstrate realistic customer-service workflows including **task allocation, negotiation, escalation, and multi-step coordination**.
+
+---
+
+## Environment Setup
+
+### Install Dependencies
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt # Create and activate a virtual environment
-
-python database_setup.py # database embed
-
-python mcp_server.py # start the mcp
-
-python run_demo.py # run the end-to-end scenario test
-
+pip install -U \
+  google-adk==1.19.0 \
+  "a2a-sdk[http-server]" \
+  nest-asyncio \
+  sniffio \
+  anyio \
+  httpx \
+  uvicorn \
+  starlette \
+  fastapi \
+  python-dotenv \
+  requests
 ```
 
-## Scenarios Covered (assignment requirements)
-- Task allocation: Router to Data Agent to Support Agent for “I’m customer 12345 and need help upgrading my account”.
+Alternatively:
 
-- Negotiation/escalation: Router mediates billing and cancellation by looping Support and retrieving from dataset.
+```bash
+pip install -r requirements.txt
+```
 
-- Multi-step: Router decomposes “What’s the status of all high-priority tickets for premium customers?” into customer lookup and ticket report.
+---
 
-- Additional tests: simple info lookup, active customers with open tickets, and parallel update with history retrieval.
+## Quick Start
 
-## Notebook option that runs the project end to end 
-This will be covered in colab - upload the database to colab and run through that. There is another .ipynb notebook. I uploaded the files into Colab and run over that, but there is another way that can colone the github repo to run the agent through colab. 
+```bash
+# 1. Create and activate a virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Initialize the database with demo data
+python database_setup.py
+
+# 4. Start the MCP server (data layer)
+python mcp_server.py
+
+# 5. Start the A2A agents
+python run_a2a_servers.py
+
+# 6. Run the end-to-end scenario tests
+python run_demo.py
+```
+
+---
+
+## Project Structure
+
+```text
+.
+├── database_setup.py          # Seeds the SQLite database with demo customer & ticket data
+├── db.py                      # Shared low-level SQLite helpers
+├── db_tools.py                # High-level MCP-style data access tools
+├── mcp_server.py              # FastMCP server exposing database tools
+├── mcp_client.py              # Lightweight JSON-RPC client for MCP
+├── adk_agents.py              # Defines Customer Data Agent, Support Agent, and Router Agent
+├── run_a2a_servers.py         # Starts all A2A HTTP servers
+├── run_demo.py                # Runs all required assignment scenarios
+├── scenario1_task_allocation.py
+├── scenario2_negotiation_escalation.py
+├── scenario3_multi_step_coordination.py
+└── requirements.txt
+```
+
+---
+
+## System Architecture
+
+**High-Level Flow**
+
+```text
+User
+ ↓
+Router Agent (Orchestrator)
+ ↓
+Customer Data Agent (via MCP tools)
+ ↓
+Support Agent (final response)
+```
+
+**Key Design Principles**
+
+* The **Customer Data Agent never writes directly to the database**. All DB access is done via MCP-backed tools.
+* The **Router Agent performs orchestration only**, never directly performing data access.
+* The **Support Agent produces all user-facing responses** based strictly on structured JSON returned by the Customer Data Agent.
+* All escalation flows create **high-priority tickets** in the database.
+
+---
+
+## Assignment Scenarios Covered
+
+This project fully implements all required assignment scenarios:
+
+### 1. Task Allocation
+
+**Query:**
+
+> *"I'm customer 12345 and need help upgrading my account."*
+
+**Flow:**
+Router → Customer Data Agent → Support Agent
+
+---
+
+### 2. Negotiation / Escalation
+
+**Query:**
+
+> *"I want to cancel my subscription but I'm having billing issues."*
+
+**Flow:**
+
+* Router detects multiple intents
+* Customer Data Agent retrieves billing context
+* Support Agent escalates and confirms ticket creation
+
+---
+
+### 3. Multi-Step Coordination
+
+**Query:**
+
+> *"What's the status of all high-priority tickets for premium customers?"*
+
+**Flow:**
+
+* Retrieve premium customers
+* Retrieve their high-priority open tickets
+* Aggregate and summarize results
+
+---
+
+### 4. Additional Functional Tests
+
+* Simple lookup:
+
+  > *"Get customer information for ID 5"*
+
+* Active customers with open tickets
+
+* Parallel update + history retrieval (multi-intent)
+
+* Direct billing escalation with automatic ticket creation
+
+---
+
+## Notebook Execution Option (Colab)
+
+This project can also be executed end-to-end using Jupyter Notebook or Google Colab:
+
+* Upload all source files to Colab
+* Upload the SQLite database
+* Run `database_setup.py`
+* Start MCP and A2A services inside the notebook
+* Execute the scenario test cells
+
+Alternatively, the GitHub repository can be cloned directly in Colab and executed.
+
+---
+
+## Known Runtime Consideration (LLM Quota)
+
+Some complex scenarios (especially multi-step premium ticket reports) rely on **Gemini 2.5 Pro**. Under limited API quota, responses may occasionally return fallback messages such as *resource exhausted*.
+
+This does **not** indicate a system design failure. The full logic is implemented in:
+
+```python
+db_tools.list_active_customers_with_open_tickets()
+db_tools.high_priority_tickets_for_customers()
+```
+
+These functions can always be verified independently at the database level.
+
+---
 
 ## Conclusion
-This project provides a really useful and perfect hands-on experience in designing and debugging a practical multi-agent customer service system using both Agent2Agent coordination and an MCP-backed data layer. By separating tasks across a Router Agent, a Customer Data Agent, and a Support Agent, I was able to clearly model task allocation, negotiation, escalation, and multi-step workflows in a realistic customer support setting.
 
-One of the main challenges in this project was deciding how much structure to hard-code into the agents in order to satisfy all of the assignment queries and constraints. To support upgrades, billing issues, ticket reports, and history lookups, I ended up defining a fairly rich intent space in the Router and several specialized handlers in the SupportAgent and CustomerDataAgent. This also forced me to think more like a real system designer. In practice, larger production systems would push some of this logic into configuration, workflow engines, or LLM-driven routing, but going through the manual design here was useful. It made me think of that scalable multi-agent systems are about clean intent design and clear agent boundaries, designing and make them work as expected, not just about calling an LLM.
+This project delivers a complete hands-on implementation of a **realistic multi-agent customer service system** using both **Agent-to-Agent (A2A) orchestration** and an **MCP-backed data layer**. By cleanly separating responsibilities across:
+
+* a **Router Agent** (orchestration),
+* a **Customer Data Agent** (database & validation),
+* and a **Support Agent** (user-facing communication and escalation),
+
+the system successfully models **task allocation, intent negotiation, escalation handling, and multi-step coordination**.
+
+One of the core challenges was deciding **how much workflow logic to explicitly structure inside the agents** in order to reliably satisfy all assignment constraints. Supporting upgrades, billing disputes, ticket reporting, and multi-intent requests required designing a rich and explicit intent space across all agents. This process closely mirrors real-world multi-agent system design, where scalability depends not on a single LLM call, but on **clear intent modeling, strict agent boundaries, and predictable orchestration patterns**.
+
+Overall, this project provided a valuable, system-level perspective on how production-grade multi-agent architectures are designed, debugged, and validated.
