@@ -1,0 +1,146 @@
+(venv) (base) liuchenxi@liuchenxideMacBook-Pro multi-agent-customer-service % python run_demo.py
+=== Simple Query ===
+User: Get customer information for ID 5
+🧭 Router received query: Get customer information for ID 5
+📌 Router intent: simple_lookup (single customer by ID)
+➡️ Router → Customer Data Agent: get_customer
+➡️ Router → Support Agent: format simple account summary
+✅ Router ← Support Agent: final answer produced
+Assistant: Hi Elena,
+
+I've pulled up your account details. Here is a summary:
+
+*   **Name:** Elena Novak
+*   **Email:** elena@example.com
+*   **Status:** Active
+*   **Account Created:** 2025-12-02
+
+How can I help you today?
+
+=== Coordinated Query ===
+User: I'm customer 12345 and need help upgrading my account
+🧭 Router received query: I'm customer 12345 and need help upgrading my account
+📌 Router intent: upgrade_support (validate customer + upgrade context)
+➡️ Router → Customer Data Agent: get_customer + upgrade context
+➡️ Router → Support Agent: explain upgrade eligibility and next steps
+✅ Router ← Support Agent: final answer produced
+Assistant: Hi Pat,
+
+Thanks for reaching out about upgrading your account.
+
+I've looked up your details and can see that you are already on our top-tier "Premium" plan. Since you're on our best plan, no further upgrade is available at this time.
+
+Is there a specific feature you were looking for, or anything else I can help you with today?
+
+=== Complex Query ===
+User: Show me all active customers who have open tickets
+🧭 Router received query: Show me all active customers who have open tickets
+📌 Router intent: complex_open_tickets (active customers with open tickets)
+➡️ Router → Customer Data Agent: list_active_customers_with_open_tickets
+➡️ Router → Support Agent: summarize customers and their open tickets
+✅ Router ← Support Agent: final answer produced
+Assistant: Of course. Here is the list of all active customers who currently have open support tickets:
+
+*   **Carla Gomez** (ID: 3)
+    *   **Ticket #2:** "App keeps crashing on login" (Status: open, Priority: high)
+
+*   **Derek Yang** (ID: 4)
+    *   **Ticket #3:** "Refund pending for last order" (Status: in\_progress, Priority: medium)
+
+*   **Elena Novak** (ID: 5)
+    *   **Ticket #4:** "Urgent: Payment failed and account locked" (Status: open, Priority: high)
+
+*   **Pat Premium** (ID: 12345)
+    *   **Ticket #5:** "Upgrade request to premium plus" (Status: open, Priority: medium)
+    *   **Ticket #6:** "Billing inquiry: duplicate charge detected" (Status: open, Priority: high)
+
+Let me know if you need any more information
+
+=== Escalation ===
+User: I've been charged twice, please refund immediately!
+🧭 Router received query: I've been charged twice, please refund immediately!
+📌 Router intent: billing_escalation (urgent double-charge issue)
+➡️ Router → Customer Data Agent: billing_context_for_customer + create_ticket
+➡️ Router → Support Agent: acknowledge escalation and set expectations
+✅ Router ← Support Agent: final answer produced
+Assistant: Hello,
+
+I'm so sorry to hear that you've been charged twice. I understand how frustrating that must be, and I sincerely apologize for the inconvenience this has caused.
+
+I have created a high-priority support ticket for you (Ticket #7) regarding this issue and have escalated it directly to our billing team for immediate review.
+
+They will investigate the charge and will get back to you with an update within 2-3 business days.
+
+Thank you for your patience while we get this sorted out for you.
+
+=== Multi-Intent ===
+User: My customer ID is 4. Update my email to new@email.com and show my ticket history
+🧭 Router received query: My customer ID is 4. Update my email to new@email.com and show my ticket history
+📌 Router intent: multi_intent (update email + show ticket history)
+➡️ Router → Customer Data Agent: get_customer + update_customer_email + customer_ticket_history
+➡️ Router → Support Agent: confirm email change and summarize history
+✅ Router ← Support Agent: final answer produced
+Assistant: Hi Derek,
+
+I've successfully updated your email address to new@email.com.
+
+Here is a summary of your ticket history:
+
+*   **Ticket #3:** "Refund pending for last order"
+    *   Status: In Progress
+    *   Created: 2025-12-02
+
+Let me know if there's anything else I can assist you with
+
+=== Scenario 1: Task Allocation ===
+User: I need help with my account, my customer ID is 12345
+🧭 Router received query: I need help with my account, my customer ID is 12345
+📌 Router intent: task_allocation (clean account lookup and handoff)
+➡️ Router → Customer Data Agent: get_customer
+➡️ Router → Support Agent: greet user and ask how to help further
+✅ Router ← Support Agent: final answer produced
+Assistant: Hello Pat,
+
+Thanks for providing your customer ID. I've successfully located your account.
+
+Here is a summary of your details:
+- **Name**: Pat Premium
+- **Email**: pat.premium@example.com
+- **Account Status**: Active
+- **Member Since**: December 2, 2025
+
+How can I help you today?
+
+=== Scenario 2: Negotiation/Escalation ===
+User: I want to cancel my subscription but I'm having billing issues
+🧭 Router received query: I want to cancel my subscription but I'm having billing issues
+📌 Router intent: cancellation + billing support (negotiation/escalation)
+➡️ Router → Customer Data Agent: interpret billing context when customer ID is known
+➡️ Router → Support Agent: gather missing info (e.g., customer ID) and guide user
+✅ Router ← Support Agent: final answer produced
+Assistant: Hello,
+
+I'm sorry to hear you're having trouble with your billing. I can certainly help with that.
+
+To move forward, could you please provide your customer ID? I need it to locate your account details and create a ticket for our billing team.
+
+Once I have that, I'll be able to escalate your issue right away.
+
+Thank you
+
+=== Scenario 3: Multi-Step Coordination ===
+User: What's the status of all high-priority tickets for premium customers?
+🧭 Router received query: What's the status of all high-priority tickets for premium customers?
+📌 Router intent: high_priority_premium (report for premium customers)
+➡️ Router → Customer Data Agent: list_premium_customers + high_priority_tickets_for_customers
+➡️ Router → Support Agent: synthesize a high-level status report
+✅ Router ← Support Agent: final answer produced
+Assistant: Of course! Here is a summary of all high-priority tickets for your premium customers:
+
+**Pat Premium** (Customer ID: 12345)
+*   **Ticket ID:** 6
+    *   **Issue:** Billing inquiry: duplicate charge detected
+    *   **Status:** open
+    *   **Created:** 2025-12-02 22:25:26
+
+Let me know if you need any further details
