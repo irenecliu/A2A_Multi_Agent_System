@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook — generated with runcell</title>
+    <meta name="description" content="Exported with runcell — convert .ipynb notebooks to HTML or PDF anytime at runcell.dev." />
+    <meta name="generator" content="runcell" />
+    <style>
+        :root {
+            --jp-code-font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+            --jp-content-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            --jp-cell-prompt-width: 64px;
+            --jp-input-prompt-color: #307fc1;
+            --jp-output-prompt-color: #bf5b3d;
+            --jp-cell-input-bg: #f7f7f7;
+            --jp-layout-color0: #ffffff;
+            --jp-layout-color1: #f7f7f7;
+            --jp-border-color1: #e0e0e0;
+            --jp-content-font-color0: #000000;
+            --jp-content-font-color1: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--jp-content-font-family);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--jp-content-font-color0);
+            background-color: var(--jp-layout-color0);
+            margin: 0;
+            padding: 0;
+        }
+
+        .notebook-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cell structure */
+        .cell {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .cell-prompt {
+            min-width: var(--jp-cell-prompt-width);
+            width: var(--jp-cell-prompt-width);
+            font-family: var(--jp-code-font-family);
+            font-size: 12px;
+            padding: 10px 8px 10px 0;
+            text-align: right;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        .cell-content {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        /* Input prompt styling - Jupyter blue */
+        .input-prompt {
+            color: var(--jp-input-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Output prompt styling - Jupyter red/orange */
+        .output-prompt {
+            color: var(--jp-output-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Code cell input area */
+        .input-area {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            overflow-x: auto;
+        }
+
+        .input-area pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Output area */
+        .output-area {
+            margin-top: 0;
+        }
+
+        .output-wrapper {
+            display: flex;
+            flex-direction: row;
+            margin-top: 4px;
+        }
+
+        .output-content {
+            flex: 1;
+            min-width: 0;
+            padding: 8px 0;
+        }
+
+        .output-content pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Stream output (stdout/stderr) */
+        .output-stream {
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .output-stderr {
+            background-color: #fdd;
+            padding: 8px 12px;
+            border-radius: 2px;
+        }
+
+        /* Execute result / display data */
+        .output-result {
+            padding: 4px 0;
+        }
+
+        .output-result pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+        }
+
+        /* Image output */
+        .output-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* HTML output (DataFrames, etc.) */
+        .output-html {
+            overflow-x: auto;
+        }
+
+        .output-html table {
+            border-collapse: collapse;
+            font-size: 13px;
+            font-family: var(--jp-content-font-family);
+        }
+
+        .output-html table th,
+        .output-html table td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .output-html table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .output-html table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Error output */
+        .output-error {
+            background-color: #fff0f0;
+            padding: 8px 12px;
+            border-radius: 2px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Markdown cell styling */
+        .markdown-cell {
+            padding: 10px 0;
+        }
+
+        .markdown-cell h1 {
+            font-size: 2em;
+            font-weight: 600;
+            margin: 0.67em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 0.83em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin: 1em 0;
+        }
+
+        .markdown-cell h4 {
+            font-size: 1em;
+            font-weight: 600;
+            margin: 1.33em 0;
+        }
+
+        .markdown-cell h5 {
+            font-size: 0.875em;
+            font-weight: 600;
+            margin: 1.67em 0;
+        }
+
+        .markdown-cell h6 {
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2.33em 0;
+            color: #6a737d;
+        }
+
+        .markdown-cell p {
+            margin: 0 0 16px 0;
+            line-height: 1.6;
+        }
+
+        .markdown-cell code {
+            font-family: var(--jp-code-font-family);
+            font-size: 85%;
+            background-color: rgba(27, 31, 35, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        .markdown-cell pre {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 3px;
+            padding: 16px;
+            overflow-x: auto;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+
+        .markdown-cell pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 100%;
+        }
+
+        .markdown-cell blockquote {
+            margin: 0 0 16px 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 4px solid #dfe2e5;
+        }
+
+        .markdown-cell ul,
+        .markdown-cell ol {
+            margin: 0 0 16px 0;
+            padding-left: 2em;
+        }
+
+        .markdown-cell li {
+            margin: 0.25em 0;
+        }
+
+        .markdown-cell a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .markdown-cell a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-cell hr {
+            border: 0;
+            border-top: 1px solid var(--jp-border-color1);
+            margin: 24px 0;
+        }
+
+        .markdown-cell img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .markdown-cell table {
+            border-collapse: collapse;
+            margin: 0 0 16px 0;
+        }
+
+        .markdown-cell table th,
+        .markdown-cell table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+
+        .markdown-cell table th {
+            font-weight: 600;
+            background-color: #f6f8fa;
+        }
+
+        .markdown-cell table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+
+        /* Raw cell styling */
+        .raw-cell {
+            background-color: var(--jp-layout-color1);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Empty prompt placeholder */
+        .prompt-empty {
+            color: transparent;
+        }
+
+        .export-footer {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--jp-border-color1);
+            color: #555;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .export-footer a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .export-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Github Colone</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [1]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># ===== Clone GitHub repo =====
+import os
+
+REPO_URL = "https://github.com/irenecliu/A2A_Multi_Agent_System.git"
+PROJECT_NAME = "A2A_Multi_Agent_System"
+PROJECT_DIR = f"/content/{PROJECT_NAME}"
+
+%cd /content
+
+# Clean old copy if exists
+if os.path.exists(PROJECT_DIR):
+    print("Removing existing project directory...")
+    !rm -rf {PROJECT_DIR}
+
+print("Cloning repository...")
+!git clone {REPO_URL}
+
+%cd {PROJECT_NAME}
+
+print("Current working directory:")
+!pwd
+print("Project files:")
+!ls</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content
+Cloning repository...
+Cloning into 'A2A_Multi_Agent_System'...
+remote: Enumerating objects: 11357, done.[K
+remote: Counting objects: 100% (8/8), done.[K
+remote: Compressing objects: 100% (8/8), done.[K
+remote: Total 11357 (delta 1), reused 3 (delta 0), pack-reused 11349 (from 1)[K
+Receiving objects: 100% (11357/11357), 88.45 MiB | 14.30 MiB/s, done.
+Resolving deltas: 100% (3280/3280), done.
+Updating files: 100% (10727/10727), done.
+/content/A2A_Multi_Agent_System
+Current working directory:
+/content/A2A_Multi_Agent_System
+Project files:
+a2a_client_scenarios.py  requirements.txt
+a2a_utils.py		 run_a2a_servers.py
+adk_agents.py		 run_demo.py
+agents			 scenario1_task_allocation.py
+data			 scenario2_negotiation_escalation.py
+database_setup.py	 scenario3_multi_step_coordination.py
+db.py			 test_complex_query.py
+db_tools.py		 test_coordinated_query.py
+end-to-end-output.txt	 test_escalation_query.py
+mcp_client.py		 test_multi_intent_query.py
+mcp_server.py		 test_simple_query.py
+README.md		 venv
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Dependency Installation</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [2]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre># ===== Install dependencies =====
+import os, sys
+
+%cd /content/A2A_Multi_Agent_System
+
+print("Python version:", sys.version)
+
+# 1) requirements.txt
+if os.path.exists("requirements.txt"):
+    print("Installing dependencies from requirements.txt ...")
+    %pip install -r requirements.txt
+else:
+    print("No requirements.txt found, skipping this part.")
+
+# 2) ADK + A2A + web stack
+print("Installing A2A + Google ADK + web stack ...")
+%pip install "google-adk" "a2a-sdk[http-server]" nest-asyncio sniffio anyio httpx uvicorn starlette fastapi python-dotenv requests
+
+print("All dependencies installed (if no error above).")
+</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+Python version: 3.12.12 (main, Oct 10 2025, 08:52:57) [GCC 11.4.0]
+Installing dependencies from requirements.txt ...
+Requirement already satisfied: mcp&gt;=0.1.0 in /usr/local/lib/python3.12/dist-packages (from -r requirements.txt (line 1)) (1.22.0)
+Requirement already satisfied: anyio&gt;=4.5 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (4.11.0)
+Requirement already satisfied: httpx-sse&gt;=0.4 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (0.4.3)
+Requirement already satisfied: httpx&gt;=0.27.1 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (0.28.1)
+Requirement already satisfied: jsonschema&gt;=4.20.0 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (4.25.1)
+Requirement already satisfied: pydantic-settings&gt;=2.5.2 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (2.12.0)
+Requirement already satisfied: pydantic&lt;3.0.0,&gt;=2.11.0 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (2.12.3)
+Requirement already satisfied: pyjwt&gt;=2.10.1 in /usr/local/lib/python3.12/dist-packages (from pyjwt[crypto]&gt;=2.10.1-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (2.10.1)
+Requirement already satisfied: python-multipart&gt;=0.0.9 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (0.0.20)
+Requirement already satisfied: sse-starlette&gt;=1.6.1 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (3.0.3)
+Requirement already satisfied: starlette&gt;=0.27 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (0.48.0)
+Requirement already satisfied: typing-extensions&gt;=4.9.0 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (4.15.0)
+Requirement already satisfied: typing-inspection&gt;=0.4.1 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (0.4.2)
+Requirement already satisfied: uvicorn&gt;=0.31.1 in /usr/local/lib/python3.12/dist-packages (from mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (0.38.0)
+Requirement already satisfied: idna&gt;=2.8 in /usr/local/lib/python3.12/dist-packages (from anyio&gt;=4.5-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (3.11)
+Requirement already satisfied: sniffio&gt;=1.1 in /usr/local/lib/python3.12/dist-packages (from anyio&gt;=4.5-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (1.3.1)
+Requirement already satisfied: certifi in /usr/local/lib/python3.12/dist-packages (from httpx&gt;=0.27.1-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (2025.11.12)
+Requirement already satisfied: httpcore==1.* in /usr/local/lib/python3.12/dist-packages (from httpx&gt;=0.27.1-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (1.0.9)
+Requirement already satisfied: h11&gt;=0.16 in /usr/local/lib/python3.12/dist-packages (from httpcore==1.*-&gt;httpx&gt;=0.27.1-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (0.16.0)
+Requirement already satisfied: attrs&gt;=22.2.0 in /usr/local/lib/python3.12/dist-packages (from jsonschema&gt;=4.20.0-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (25.4.0)
+Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in /usr/local/lib/python3.12/dist-packages (from jsonschema&gt;=4.20.0-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (2025.9.1)
+Requirement already satisfied: referencing&gt;=0.28.4 in /usr/local/lib/python3.12/dist-packages (from jsonschema&gt;=4.20.0-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (0.37.0)
+Requirement already satisfied: rpds-py&gt;=0.7.1 in /usr/local/lib/python3.12/dist-packages (from jsonschema&gt;=4.20.0-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (0.29.0)
+Requirement already satisfied: annotated-types&gt;=0.6.0 in /usr/local/lib/python3.12/dist-packages (from pydantic&lt;3.0.0,&gt;=2.11.0-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (0.7.0)
+Requirement already satisfied: pydantic-core==2.41.4 in /usr/local/lib/python3.12/dist-packages (from pydantic&lt;3.0.0,&gt;=2.11.0-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (2.41.4)
+Requirement already satisfied: python-dotenv&gt;=0.21.0 in /usr/local/lib/python3.12/dist-packages (from pydantic-settings&gt;=2.5.2-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (1.2.1)
+Requirement already satisfied: cryptography&gt;=3.4.0 in /usr/local/lib/python3.12/dist-packages (from pyjwt[crypto]&gt;=2.10.1-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (43.0.3)
+Requirement already satisfied: click&gt;=7.0 in /usr/local/lib/python3.12/dist-packages (from uvicorn&gt;=0.31.1-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (8.3.1)
+Requirement already satisfied: cffi&gt;=1.12 in /usr/local/lib/python3.12/dist-packages (from cryptography&gt;=3.4.0-&gt;pyjwt[crypto]&gt;=2.10.1-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (2.0.0)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.12/dist-packages (from cffi&gt;=1.12-&gt;cryptography&gt;=3.4.0-&gt;pyjwt[crypto]&gt;=2.10.1-&gt;mcp&gt;=0.1.0-&gt;-r requirements.txt (line 1)) (2.23)
+Installing A2A + Google ADK + web stack ...
+Requirement already satisfied: google-adk in /usr/local/lib/python3.12/dist-packages (1.19.0)
+Requirement already satisfied: nest-asyncio in /usr/local/lib/python3.12/dist-packages (1.6.0)
+Requirement already satisfied: sniffio in /usr/local/lib/python3.12/dist-packages (1.3.1)
+Requirement already satisfied: anyio in /usr/local/lib/python3.12/dist-packages (4.11.0)
+Requirement already satisfied: httpx in /usr/local/lib/python3.12/dist-packages (0.28.1)
+Requirement already satisfied: uvicorn in /usr/local/lib/python3.12/dist-packages (0.38.0)
+Requirement already satisfied: starlette in /usr/local/lib/python3.12/dist-packages (0.48.0)
+Requirement already satisfied: fastapi in /usr/local/lib/python3.12/dist-packages (0.118.3)
+Requirement already satisfied: python-dotenv in /usr/local/lib/python3.12/dist-packages (1.2.1)
+Requirement already satisfied: requests in /usr/local/lib/python3.12/dist-packages (2.32.4)
+Collecting a2a-sdk[http-server]
+  Downloading a2a_sdk-0.3.19-py3-none-any.whl.metadata (7.9 kB)
+Requirement already satisfied: PyYAML&lt;7.0.0,&gt;=6.0.2 in /usr/local/lib/python3.12/dist-packages (from google-adk) (6.0.3)
+Requirement already satisfied: aiosqlite&gt;=0.21.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (0.21.0)
+Requirement already satisfied: authlib&lt;2.0.0,&gt;=1.5.1 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.6.5)
+Requirement already satisfied: click&lt;9.0.0,&gt;=8.1.8 in /usr/local/lib/python3.12/dist-packages (from google-adk) (8.3.1)
+Requirement already satisfied: google-api-python-client&lt;3.0.0,&gt;=2.157.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (2.187.0)
+Requirement already satisfied: google-cloud-aiplatform&lt;2.0.0,&gt;=1.125.0 in /usr/local/lib/python3.12/dist-packages (from google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (1.128.0)
+Requirement already satisfied: google-cloud-bigquery-storage&gt;=2.0.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (2.34.0)
+Requirement already satisfied: google-cloud-bigquery&gt;=2.2.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (3.38.0)
+Requirement already satisfied: google-cloud-bigtable&gt;=2.32.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (2.34.0)
+Requirement already satisfied: google-cloud-discoveryengine&lt;0.14.0,&gt;=0.13.12 in /usr/local/lib/python3.12/dist-packages (from google-adk) (0.13.12)
+Requirement already satisfied: google-cloud-secret-manager&lt;3.0.0,&gt;=2.22.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (2.25.0)
+Requirement already satisfied: google-cloud-spanner&lt;4.0.0,&gt;=3.56.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (3.59.0)
+Requirement already satisfied: google-cloud-speech&lt;3.0.0,&gt;=2.30.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (2.34.0)
+Requirement already satisfied: google-cloud-storage&lt;4.0.0,&gt;=3.0.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (3.6.0)
+Requirement already satisfied: google-genai&lt;2.0.0,&gt;=1.45.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.52.0)
+Requirement already satisfied: graphviz&lt;1.0.0,&gt;=0.20.2 in /usr/local/lib/python3.12/dist-packages (from google-adk) (0.21)
+Requirement already satisfied: jsonschema&lt;5.0.0,&gt;=4.23.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (4.25.1)
+Requirement already satisfied: mcp&lt;2.0.0,&gt;=1.8.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.22.0)
+Requirement already satisfied: opentelemetry-api&lt;=1.37.0,&gt;=1.37.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.37.0)
+Requirement already satisfied: opentelemetry-exporter-gcp-logging&lt;2.0.0,&gt;=1.9.0a0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.11.0a0)
+Requirement already satisfied: opentelemetry-exporter-gcp-monitoring&lt;2.0.0,&gt;=1.9.0a0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.11.0a0)
+Requirement already satisfied: opentelemetry-exporter-gcp-trace&lt;2.0.0,&gt;=1.9.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.11.0)
+Requirement already satisfied: opentelemetry-exporter-otlp-proto-http&gt;=1.36.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.37.0)
+Requirement already satisfied: opentelemetry-resourcedetector-gcp&lt;2.0.0,&gt;=1.9.0a0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.11.0a0)
+Requirement already satisfied: opentelemetry-sdk&lt;=1.37.0,&gt;=1.37.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.37.0)
+Requirement already satisfied: pyarrow&gt;=14.0.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (18.1.0)
+Requirement already satisfied: pydantic&lt;3.0.0,&gt;=2.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (2.12.3)
+Requirement already satisfied: python-dateutil&lt;3.0.0,&gt;=2.9.0.post0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (2.9.0.post0)
+Requirement already satisfied: sqlalchemy-spanner&gt;=1.14.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (1.17.1)
+Requirement already satisfied: sqlalchemy&lt;3.0.0,&gt;=2.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (2.0.44)
+Requirement already satisfied: tenacity&lt;10.0.0,&gt;=9.0.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (9.1.2)
+Requirement already satisfied: typing-extensions&lt;5,&gt;=4.5 in /usr/local/lib/python3.12/dist-packages (from google-adk) (4.15.0)
+Requirement already satisfied: tzlocal&lt;6.0,&gt;=5.3 in /usr/local/lib/python3.12/dist-packages (from google-adk) (5.3.1)
+Requirement already satisfied: watchdog&lt;7.0.0,&gt;=6.0.0 in /usr/local/lib/python3.12/dist-packages (from google-adk) (6.0.0)
+Requirement already satisfied: websockets&lt;16.0.0,&gt;=15.0.1 in /usr/local/lib/python3.12/dist-packages (from google-adk) (15.0.1)
+Requirement already satisfied: google-api-core&gt;=1.26.0 in /usr/local/lib/python3.12/dist-packages (from a2a-sdk[http-server]) (2.28.1)
+Requirement already satisfied: httpx-sse&gt;=0.4.0 in /usr/local/lib/python3.12/dist-packages (from a2a-sdk[http-server]) (0.4.3)
+Requirement already satisfied: protobuf&gt;=5.29.5 in /usr/local/lib/python3.12/dist-packages (from a2a-sdk[http-server]) (5.29.5)
+Requirement already satisfied: sse-starlette in /usr/local/lib/python3.12/dist-packages (from a2a-sdk[http-server]) (3.0.3)
+Requirement already satisfied: idna&gt;=2.8 in /usr/local/lib/python3.12/dist-packages (from anyio) (3.11)
+Requirement already satisfied: certifi in /usr/local/lib/python3.12/dist-packages (from httpx) (2025.11.12)
+Requirement already satisfied: httpcore==1.* in /usr/local/lib/python3.12/dist-packages (from httpx) (1.0.9)
+Requirement already satisfied: h11&gt;=0.16 in /usr/local/lib/python3.12/dist-packages (from httpcore==1.*-&gt;httpx) (0.16.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in /usr/local/lib/python3.12/dist-packages (from requests) (3.4.4)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests) (2.5.0)
+Requirement already satisfied: cryptography in /usr/local/lib/python3.12/dist-packages (from authlib&lt;2.0.0,&gt;=1.5.1-&gt;google-adk) (43.0.3)
+Requirement already satisfied: googleapis-common-protos&lt;2.0.0,&gt;=1.56.2 in /usr/local/lib/python3.12/dist-packages (from google-api-core&gt;=1.26.0-&gt;a2a-sdk[http-server]) (1.72.0)
+Requirement already satisfied: proto-plus&lt;2.0.0,&gt;=1.22.3 in /usr/local/lib/python3.12/dist-packages (from google-api-core&gt;=1.26.0-&gt;a2a-sdk[http-server]) (1.26.1)
+Requirement already satisfied: google-auth&lt;3.0.0,&gt;=2.14.1 in /usr/local/lib/python3.12/dist-packages (from google-api-core&gt;=1.26.0-&gt;a2a-sdk[http-server]) (2.43.0)
+Requirement already satisfied: httplib2&lt;1.0.0,&gt;=0.19.0 in /usr/local/lib/python3.12/dist-packages (from google-api-python-client&lt;3.0.0,&gt;=2.157.0-&gt;google-adk) (0.31.0)
+Requirement already satisfied: google-auth-httplib2&lt;1.0.0,&gt;=0.2.0 in /usr/local/lib/python3.12/dist-packages (from google-api-python-client&lt;3.0.0,&gt;=2.157.0-&gt;google-adk) (0.2.1)
+Requirement already satisfied: uritemplate&lt;5,&gt;=3.0.1 in /usr/local/lib/python3.12/dist-packages (from google-api-python-client&lt;3.0.0,&gt;=2.157.0-&gt;google-adk) (4.2.0)
+Requirement already satisfied: packaging&gt;=14.3 in /usr/local/lib/python3.12/dist-packages (from google-cloud-aiplatform&lt;2.0.0,&gt;=1.125.0-&gt;google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (25.0)
+Requirement already satisfied: google-cloud-resource-manager&lt;3.0.0,&gt;=1.3.3 in /usr/local/lib/python3.12/dist-packages (from google-cloud-aiplatform&lt;2.0.0,&gt;=1.125.0-&gt;google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (1.15.0)
+Requirement already satisfied: shapely&lt;3.0.0 in /usr/local/lib/python3.12/dist-packages (from google-cloud-aiplatform&lt;2.0.0,&gt;=1.125.0-&gt;google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (2.1.2)
+Requirement already satisfied: docstring_parser&lt;1 in /usr/local/lib/python3.12/dist-packages (from google-cloud-aiplatform&lt;2.0.0,&gt;=1.125.0-&gt;google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (0.17.0)
+Requirement already satisfied: cloudpickle&lt;4.0,&gt;=3.0 in /usr/local/lib/python3.12/dist-packages (from google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (3.1.2)
+Requirement already satisfied: google-cloud-trace&lt;2 in /usr/local/lib/python3.12/dist-packages (from google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (1.17.0)
+Requirement already satisfied: google-cloud-logging&lt;4 in /usr/local/lib/python3.12/dist-packages (from google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (3.12.1)
+Requirement already satisfied: google-cloud-core&lt;3.0.0,&gt;=2.4.1 in /usr/local/lib/python3.12/dist-packages (from google-cloud-bigquery&gt;=2.2.0-&gt;google-adk) (2.5.0)
+Requirement already satisfied: google-resumable-media&lt;3.0.0,&gt;=2.0.0 in /usr/local/lib/python3.12/dist-packages (from google-cloud-bigquery&gt;=2.2.0-&gt;google-adk) (2.8.0)
+Requirement already satisfied: grpcio&lt;2.0.0,&gt;=1.33.2 in /usr/local/lib/python3.12/dist-packages (from google-cloud-bigquery-storage&gt;=2.0.0-&gt;google-adk) (1.76.0)
+Requirement already satisfied: grpc-google-iam-v1&lt;1.0.0,&gt;=0.12.4 in /usr/local/lib/python3.12/dist-packages (from google-cloud-bigtable&gt;=2.32.0-&gt;google-adk) (0.14.3)
+Requirement already satisfied: google-crc32c&lt;2.0.0dev,&gt;=1.5.0 in /usr/local/lib/python3.12/dist-packages (from google-cloud-bigtable&gt;=2.32.0-&gt;google-adk) (1.7.1)
+Requirement already satisfied: sqlparse&gt;=0.4.4 in /usr/local/lib/python3.12/dist-packages (from google-cloud-spanner&lt;4.0.0,&gt;=3.56.0-&gt;google-adk) (0.5.3)
+Requirement already satisfied: grpc-interceptor&gt;=0.15.4 in /usr/local/lib/python3.12/dist-packages (from google-cloud-spanner&lt;4.0.0,&gt;=3.56.0-&gt;google-adk) (0.15.4)
+Requirement already satisfied: attrs&gt;=22.2.0 in /usr/local/lib/python3.12/dist-packages (from jsonschema&lt;5.0.0,&gt;=4.23.0-&gt;google-adk) (25.4.0)
+Requirement already satisfied: jsonschema-specifications&gt;=2023.03.6 in /usr/local/lib/python3.12/dist-packages (from jsonschema&lt;5.0.0,&gt;=4.23.0-&gt;google-adk) (2025.9.1)
+Requirement already satisfied: referencing&gt;=0.28.4 in /usr/local/lib/python3.12/dist-packages (from jsonschema&lt;5.0.0,&gt;=4.23.0-&gt;google-adk) (0.37.0)
+Requirement already satisfied: rpds-py&gt;=0.7.1 in /usr/local/lib/python3.12/dist-packages (from jsonschema&lt;5.0.0,&gt;=4.23.0-&gt;google-adk) (0.29.0)
+Requirement already satisfied: pydantic-settings&gt;=2.5.2 in /usr/local/lib/python3.12/dist-packages (from mcp&lt;2.0.0,&gt;=1.8.0-&gt;google-adk) (2.12.0)
+Requirement already satisfied: pyjwt&gt;=2.10.1 in /usr/local/lib/python3.12/dist-packages (from pyjwt[crypto]&gt;=2.10.1-&gt;mcp&lt;2.0.0,&gt;=1.8.0-&gt;google-adk) (2.10.1)
+Requirement already satisfied: python-multipart&gt;=0.0.9 in /usr/local/lib/python3.12/dist-packages (from mcp&lt;2.0.0,&gt;=1.8.0-&gt;google-adk) (0.0.20)
+Requirement already satisfied: typing-inspection&gt;=0.4.1 in /usr/local/lib/python3.12/dist-packages (from mcp&lt;2.0.0,&gt;=1.8.0-&gt;google-adk) (0.4.2)
+Requirement already satisfied: importlib-metadata&lt;8.8.0,&gt;=6.0 in /usr/local/lib/python3.12/dist-packages (from opentelemetry-api&lt;=1.37.0,&gt;=1.37.0-&gt;google-adk) (8.7.0)
+Requirement already satisfied: google-cloud-monitoring~=2.0 in /usr/local/lib/python3.12/dist-packages (from opentelemetry-exporter-gcp-monitoring&lt;2.0.0,&gt;=1.9.0a0-&gt;google-adk) (2.28.0)
+Requirement already satisfied: opentelemetry-exporter-otlp-proto-common==1.37.0 in /usr/local/lib/python3.12/dist-packages (from opentelemetry-exporter-otlp-proto-http&gt;=1.36.0-&gt;google-adk) (1.37.0)
+Requirement already satisfied: opentelemetry-proto==1.37.0 in /usr/local/lib/python3.12/dist-packages (from opentelemetry-exporter-otlp-proto-http&gt;=1.36.0-&gt;google-adk) (1.37.0)
+Requirement already satisfied: opentelemetry-semantic-conventions==0.58b0 in /usr/local/lib/python3.12/dist-packages (from opentelemetry-sdk&lt;=1.37.0,&gt;=1.37.0-&gt;google-adk) (0.58b0)
+Requirement already satisfied: annotated-types&gt;=0.6.0 in /usr/local/lib/python3.12/dist-packages (from pydantic&lt;3.0.0,&gt;=2.0-&gt;google-adk) (0.7.0)
+Requirement already satisfied: pydantic-core==2.41.4 in /usr/local/lib/python3.12/dist-packages (from pydantic&lt;3.0.0,&gt;=2.0-&gt;google-adk) (2.41.4)
+Requirement already satisfied: six&gt;=1.5 in /usr/local/lib/python3.12/dist-packages (from python-dateutil&lt;3.0.0,&gt;=2.9.0.post0-&gt;google-adk) (1.17.0)
+Requirement already satisfied: greenlet&gt;=1 in /usr/local/lib/python3.12/dist-packages (from sqlalchemy&lt;3.0.0,&gt;=2.0-&gt;google-adk) (3.2.4)
+Requirement already satisfied: alembic in /usr/local/lib/python3.12/dist-packages (from sqlalchemy-spanner&gt;=1.14.0-&gt;google-adk) (1.17.2)
+Requirement already satisfied: grpcio-status&lt;2.0.0,&gt;=1.33.2 in /usr/local/lib/python3.12/dist-packages (from google-api-core[grpc]!=2.0.*,!=2.1.*,!=2.2.*,!=2.3.*,!=2.4.*,!=2.5.*,!=2.6.*,!=2.7.*,&lt;3.0.0,&gt;=1.34.1-&gt;google-cloud-aiplatform&lt;2.0.0,&gt;=1.125.0-&gt;google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (1.71.2)
+Requirement already satisfied: cachetools&lt;7.0,&gt;=2.0.0 in /usr/local/lib/python3.12/dist-packages (from google-auth&lt;3.0.0,&gt;=2.14.1-&gt;google-api-core&gt;=1.26.0-&gt;a2a-sdk[http-server]) (6.2.2)
+Requirement already satisfied: pyasn1-modules&gt;=0.2.1 in /usr/local/lib/python3.12/dist-packages (from google-auth&lt;3.0.0,&gt;=2.14.1-&gt;google-api-core&gt;=1.26.0-&gt;a2a-sdk[http-server]) (0.4.2)
+Requirement already satisfied: rsa&lt;5,&gt;=3.1.4 in /usr/local/lib/python3.12/dist-packages (from google-auth&lt;3.0.0,&gt;=2.14.1-&gt;google-api-core&gt;=1.26.0-&gt;a2a-sdk[http-server]) (4.9.1)
+Requirement already satisfied: google-cloud-appengine-logging&lt;2.0.0,&gt;=0.1.3 in /usr/local/lib/python3.12/dist-packages (from google-cloud-logging&lt;4-&gt;google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (1.7.0)
+Requirement already satisfied: google-cloud-audit-log&lt;1.0.0,&gt;=0.3.1 in /usr/local/lib/python3.12/dist-packages (from google-cloud-logging&lt;4-&gt;google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (0.4.0)
+Requirement already satisfied: pyparsing&lt;4,&gt;=3.0.4 in /usr/local/lib/python3.12/dist-packages (from httplib2&lt;1.0.0,&gt;=0.19.0-&gt;google-api-python-client&lt;3.0.0,&gt;=2.157.0-&gt;google-adk) (3.2.5)
+Requirement already satisfied: zipp&gt;=3.20 in /usr/local/lib/python3.12/dist-packages (from importlib-metadata&lt;8.8.0,&gt;=6.0-&gt;opentelemetry-api&lt;=1.37.0,&gt;=1.37.0-&gt;google-adk) (3.23.0)
+Requirement already satisfied: cffi&gt;=1.12 in /usr/local/lib/python3.12/dist-packages (from cryptography-&gt;authlib&lt;2.0.0,&gt;=1.5.1-&gt;google-adk) (2.0.0)
+Requirement already satisfied: numpy&gt;=1.21 in /usr/local/lib/python3.12/dist-packages (from shapely&lt;3.0.0-&gt;google-cloud-aiplatform&lt;2.0.0,&gt;=1.125.0-&gt;google-cloud-aiplatform[agent-engines]&lt;2.0.0,&gt;=1.125.0-&gt;google-adk) (2.0.2)
+Requirement already satisfied: Mako in /usr/local/lib/python3.12/dist-packages (from alembic-&gt;sqlalchemy-spanner&gt;=1.14.0-&gt;google-adk) (1.3.10)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.12/dist-packages (from cffi&gt;=1.12-&gt;cryptography-&gt;authlib&lt;2.0.0,&gt;=1.5.1-&gt;google-adk) (2.23)
+Requirement already satisfied: pyasn1&lt;0.7.0,&gt;=0.6.1 in /usr/local/lib/python3.12/dist-packages (from pyasn1-modules&gt;=0.2.1-&gt;google-auth&lt;3.0.0,&gt;=2.14.1-&gt;google-api-core&gt;=1.26.0-&gt;a2a-sdk[http-server]) (0.6.1)
+Requirement already satisfied: MarkupSafe&gt;=0.9.2 in /usr/local/lib/python3.12/dist-packages (from Mako-&gt;alembic-&gt;sqlalchemy-spanner&gt;=1.14.0-&gt;google-adk) (3.0.3)
+Downloading a2a_sdk-0.3.19-py3-none-any.whl (141 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m141.5/141.5 kB[0m [31m5.4 MB/s[0m eta [36m0:00:00[0m
+[?25hInstalling collected packages: a2a-sdk
+Successfully installed a2a-sdk-0.3.19
+All dependencies installed (if no error above).
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Initialize SQList Database</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [3]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+
+!python database_setup.py</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+Database initialized with 6 customers and 6 tickets at /content/A2A_Multi_Agent_System/data/customer_service.db
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Set up API Key and Start MCP / A2A Servers</h1></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">In here you will need to upload your own API_Key to google Colab. On the left handside there's a key icon, click that and that's called "Secrets", where could grant access of your own API Key. Enter your google_api_key to "Value", and enter the name "GOOGLE_API_KEY", then run the following cells.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [4]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+
+import os
+
+try:
+    from google.colab import userdata
+    api_key = userdata.get("GOOGLE_API_KEY")
+except ImportError:
+    api_key = None
+
+if not api_key:
+    raise RuntimeError("GOOGLE_API_KEY not found. Make sure you added it in Colab Secrets as 'GOOGLE_API_KEY'.")
+
+os.environ["GOOGLE_API_KEY"] = api_key
+print("GOOGLE_API_KEY is set in environment.")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+GOOGLE_API_KEY is set in environment.
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [5]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+
+import subprocess, sys, time, os
+
+mcp_proc = subprocess.Popen(
+    [sys.executable, "-u", "mcp_server.py"],
+    stdout=open("mcp.log", "a", buffering=1),
+    stderr=subprocess.STDOUT,
+)
+
+a2a_proc = subprocess.Popen(
+    [sys.executable, "-u", "run_a2a_servers.py"],
+    stdout=open("a2a.log", "a", buffering=1),
+    stderr=subprocess.STDOUT,
+)
+
+time.sleep(8)
+
+print("MCP and A2A servers started in background.")
+print("MCP PID:", mcp_proc.pid)
+print("A2A PID:", a2a_proc.pid)
+</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+MCP and A2A servers started in background.
+MCP PID: 1388
+A2A PID: 1389
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [6]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import os
+
+def snapshot_logs():
+    sizes = {}
+    for name in ["mcp.log", "a2a.log"]:
+        sizes[name] = os.path.getsize(name) if os.path.exists(name) else 0
+    return sizes
+
+def show_new_logs(before_sizes):
+    for name in ["a2a.log", "mcp.log"]:
+        print(f"\n====== {name} (new logs) ======")
+        if not os.path.exists(name):
+            print("(log file not found)")
+            continue
+        with open(name, "r") as f:
+            f.seek(before_sizes.get(name, 0))
+            new = f.read().strip()
+            print(new if new else "(no new logs)")
+</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2>Test Queries and Scenarios</h2></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Scenario 1: Task Allocation</h1><br>Query: "I need help with my account, customer ID 12345"</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [7]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+before = snapshot_logs()
+
+!python scenario1_task_allocation.py
+
+show_new_logs(before)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+=== Scenario 1: Task Allocation ===
+User: I need help with my account, customer ID 12345
+Assistant: Hi Pat,
+
+Thanks for reaching out. I've located your account.
+
+Here are your current details:
+- **Name:** Pat Premium
+- **Email:** pat.premium@example.com
+- **Status:** Active
+
+How can I help you today?
+
+
+====== a2a.log (new logs) ======
+INFO:     127.0.0.1:36042 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36042 - "POST / HTTP/1.1" 200 OK
+/usr/local/lib/python3.12/dist-packages/google/adk/a2a/executor/a2a_agent_executor.py:202: UserWarning: [EXPERIMENTAL] convert_a2a_request_to_agent_run_request: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  run_request = self._config.request_converter(
+/usr/local/lib/python3.12/dist-packages/google/adk/a2a/converters/request_converter.py:115: UserWarning: [EXPERIMENTAL] convert_a2a_part_to_genai_part: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  genai_parts = part_converter(a2a_part)
+/usr/local/lib/python3.12/dist-packages/google/adk/a2a/converters/request_converter.py:120: UserWarning: [EXPERIMENTAL] AgentRunRequest: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  return AgentRunRequest(
+/usr/local/lib/python3.12/dist-packages/google/adk/a2a/executor/a2a_agent_executor.py:235: UserWarning: [EXPERIMENTAL] TaskResultAggregator: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  task_result_aggregator = TaskResultAggregator()
+INFO:     127.0.0.1:51212 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+/usr/local/lib/python3.12/dist-packages/google/adk/agents/remote_a2a_agent.py:389: UserWarning: [EXPERIMENTAL] convert_genai_part_to_a2a_part: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  converted_parts = self._genai_part_converter(part)
+Warning: there are non-text parts in the response: ['function_call'], returning concatenated text result from text parts. Check the full candidates.content.parts accessor to get the full model response.
+/usr/local/lib/python3.12/dist-packages/google/adk/a2a/executor/a2a_agent_executor.py:238: UserWarning: [EXPERIMENTAL] convert_event_to_a2a_events: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  for a2a_event in self._config.event_converter(
+/usr/local/lib/python3.12/dist-packages/google/adk/a2a/converters/event_converter.py:564: UserWarning: [EXPERIMENTAL] convert_event_to_a2a_message: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  message = convert_event_to_a2a_message(
+/usr/local/lib/python3.12/dist-packages/google/adk/a2a/converters/event_converter.py:396: UserWarning: [EXPERIMENTAL] convert_genai_part_to_a2a_part: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  a2a_parts = part_converter(part)
+🛠 [MCP] get_customer: called | payload={'customer_id': 12345}
+🛠 [MCP] get_customer: success | payload={'customer': {'id': 12345, 'name': 'Pat Premium', 'email': 'pat.premium@example.com', 'phone': '555-1234', 'status': 'active', 'created_at': '2025-12-03 03:38:00', 'updated_at': '2025-12-03 03:38:00'}}
+INFO:     127.0.0.1:51212 - "POST / HTTP/1.1" 200 OK
+/usr/local/lib/python3.12/dist-packages/google/adk/a2a/converters/event_converter.py:239: UserWarning: [EXPERIMENTAL] convert_a2a_message_to_event: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  return convert_a2a_message_to_event(
+/usr/local/lib/python3.12/dist-packages/google/adk/a2a/converters/event_converter.py:309: UserWarning: [EXPERIMENTAL] convert_a2a_part_to_genai_part: ADK Implementation for A2A support (A2aAgentExecutor, RemoteA2aAgent and corresponding supporting components etc.) is in experimental mode and is subjected to breaking changes. A2A protocol and SDK arethemselves not experimental. Once it's stable enough the experimental mode will be removed. Your feedback is welcome.
+  parts = part_converter(a2a_part)
+INFO:     127.0.0.1:44988 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44988 - "POST / HTTP/1.1" 200 OK
+
+====== mcp.log (new logs) ======
+(no new logs)
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Scenario 2: Negotiation and Escalation</h1><br>Query: "I want to cancel my subscription but I'm having billing issues"</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [8]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+
+before = snapshot_logs()
+
+!python scenario2_negotiation_escalation.py
+
+show_new_logs(before)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+=== Scenario 2: Negotiation/Escalation ===
+User: I want to cancel my subscription but I'm having billing issues
+Assistant: Of course, I can help with that. To look into your subscription and the billing issues you've mentioned, could you please provide your customer ID?
+
+
+====== a2a.log (new logs) ======
+INFO:     127.0.0.1:40976 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40976 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50936 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38486 - "POST / HTTP/1.1" 200 OK
+
+====== mcp.log (new logs) ======
+(no new logs)
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Scenario 3: Multi-Step Coordination</h1><br>Query: "What's the status of all high-priority tickets for premium customers?"</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [9]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+
+before = snapshot_logs()
+
+!python scenario3_multi_step_coordination.py
+
+show_new_logs(before)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+=== Scenario 3: Multi-Step Coordination ===
+User: What's the status of all high-priority tickets for premium customers?
+Assistant: Of course! Here is a summary of all high-priority tickets for your premium customers:
+
+**Pat Premium (pat.premium@example.com)**
+*   **Ticket ID:** 6
+    *   **Issue:** Billing inquiry: duplicate charge detected
+    *   **Status:** Open
+
+Let me know if there's anything else I can help you with
+
+
+====== a2a.log (new logs) ======
+INFO:     127.0.0.1:34040 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34040 - "POST / HTTP/1.1" 200 OK
+🛠 [MCP] list_premium_customers: called | payload={'limit': 100}
+🛠 [MCP] list_premium_customers: success | payload={'count': 1}
+🛠 [MCP] high_priority_tickets_for_customers: called | payload={'customer_ids': [12345]}
+🛠 [MCP] high_priority_tickets_for_customers: success | payload={'count': 1}
+INFO:     127.0.0.1:52392 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40958 - "POST / HTTP/1.1" 200 OK
+
+====== mcp.log (new logs) ======
+(no new logs)
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Simple Query: "Get customer information for ID 5"</h1><br>Single agent, straightforward MCP call</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [10]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+
+before = snapshot_logs()
+
+!python test_simple_query.py
+
+show_new_logs(before)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+=== Simple Query ===
+User: Get customer information for ID 5
+Assistant: Hello Elena,
+
+Here is your account information:
+- **Name**: Elena Novak
+- **Email**: elena@example.com
+- **Status**: Active
+- **Member Since**: December 3, 2025
+
+How can I help you today?
+
+
+====== a2a.log (new logs) ======
+INFO:     127.0.0.1:43410 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43410 - "POST / HTTP/1.1" 200 OK
+🛠 [MCP] get_customer: called | payload={'customer_id': 5}
+🛠 [MCP] get_customer: success | payload={'customer': {'id': 5, 'name': 'Elena Novak', 'email': 'elena@example.com', 'phone': '555-5000', 'status': 'active', 'created_at': '2025-12-03 03:38:00', 'updated_at': '2025-12-03 03:38:00'}}
+INFO:     127.0.0.1:47622 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35218 - "POST / HTTP/1.1" 200 OK
+
+====== mcp.log (new logs) ======
+(no new logs)
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Coordinated Query: "I'm customer 12345 and need help upgrading my account"</h1><br>Multiple agents coordinate: data fetch + support response</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [11]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+
+before = snapshot_logs()
+
+!python test_coordinated_query.py
+
+show_new_logs(before)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+=== Coordinated Query ===
+User: I'm customer 1 and need help upgrading my account
+Assistant: Hi Alice,
+
+Thanks for reaching out. I see you're interested in upgrading your account, and I can confirm that you are eligible to upgrade from your current "standard" plan.
+
+You can complete the upgrade process directly from your account settings page. Please let me know if you have any questions or run into any trouble.
+
+Best,
+The Support Team
+
+
+====== a2a.log (new logs) ======
+INFO:     127.0.0.1:40246 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40246 - "POST / HTTP/1.1" 200 OK
+🛠 [MCP] get_customer: called | payload={'customer_id': 1}
+🛠 [MCP] get_customer: success | payload={'customer': {'id': 1, 'name': 'Alice Carter', 'email': 'alice@example.com', 'phone': '555-1000', 'status': 'active', 'created_at': '2025-12-03 03:38:00', 'updated_at': '2025-12-03 03:38:00'}}
+INFO:     127.0.0.1:33232 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36394 - "POST / HTTP/1.1" 200 OK
+
+====== mcp.log (new logs) ======
+(no new logs)
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Complex Query: "Show me all active customers who have open tickets"</h1><br>Requires negotiation between data and support agents</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [12]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+
+before = snapshot_logs()
+
+!python test_complex_query.py
+
+show_new_logs(before)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+=== Complex Query ===
+User: Show me all active customers who have open tickets
+Assistant: Of course! Here is a list of all active customers with open support tickets:
+
+*   **Carla Gomez** (carla@example.com)
+    *   **Ticket #2:** "App keeps crashing on login" (Status: open, Priority: high)
+
+*   **Derek Yang** (derek@example.com)
+    *   **Ticket #3:** "Refund pending for last order" (Status: in\_progress, Priority: medium)
+
+*   **Elena Novak** (elena@example.com)
+    *   **Ticket #4:** "Urgent: Payment failed and account locked" (Status: open, Priority: high)
+
+*   **Pat Premium** (pat.premium@example.com)
+    *   **Ticket #5:** "Upgrade request to premium plus" (Status: open, Priority: medium)
+    *   **Ticket #6:** "Billing inquiry: duplicate charge detected" (Status: open, Priority: high)
+
+Let me know if you need more details on any of these
+
+
+====== a2a.log (new logs) ======
+INFO:     127.0.0.1:51876 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51876 - "POST / HTTP/1.1" 200 OK
+🛠 [MCP] list_active_customers_with_open_tickets: called
+🛠 [MCP] list_active_customers_with_open_tickets: success | payload={'count': 4}
+🛠 [MCP] open_tickets_for_customer: called | payload={'customer_id': 3}
+🛠 [MCP] open_tickets_for_customer: success | payload={'count': 1}
+🛠 [MCP] open_tickets_for_customer: called | payload={'customer_id': 4}
+🛠 [MCP] open_tickets_for_customer: success | payload={'count': 1}
+🛠 [MCP] open_tickets_for_customer: called | payload={'customer_id': 5}
+🛠 [MCP] open_tickets_for_customer: success | payload={'count': 1}
+🛠 [MCP] open_tickets_for_customer: called | payload={'customer_id': 12345}
+🛠 [MCP] open_tickets_for_customer: success | payload={'count': 2}
+INFO:     127.0.0.1:46006 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60394 - "POST / HTTP/1.1" 200 OK
+
+====== mcp.log (new logs) ======
+(no new logs)
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Escalation: "I've been charged twice, please refund immediately!"</h1><br>Router must identify urgency and route appropriately</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [13]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+
+before = snapshot_logs()
+
+!python test_escalation_query.py
+
+show_new_logs(before)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+=== Escalation ===
+User: I've been charged twice, please refund immediately!
+Assistant: Hello,
+
+I understand you've been charged twice, and I sincerely apologize for the inconvenience this has caused.
+
+I have created a high-priority ticket (ID: 7) for this issue and have escalated it directly to our billing department. They will investigate the double charge and get back to you with an update within 2–3 business days.
+
+Thank you for your patience.
+
+
+====== a2a.log (new logs) ======
+INFO:     127.0.0.1:46554 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:46554 - "POST / HTTP/1.1" 200 OK
+🛠 [MCP] create_ticket: called | payload={'customer_id': 0, 'issue': 'Double charge / refund request', 'priority': 'high', 'status': 'open'}
+🛠 [MCP] create_ticket: success | payload={'ticket': {'id': 7, 'customer_id': 0, 'issue': 'Double charge / refund request', 'status': 'open', 'priority': 'high', 'created_at': '2025-12-03 03:42:05'}}
+INFO:     127.0.0.1:57128 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37326 - "POST / HTTP/1.1" 200 OK
+
+====== mcp.log (new logs) ======
+(no new logs)
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Multi-Intent: "Update my email to new@email.com and show my ticket history"</h1><br>Parallel task execution and coordination</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [14]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>%cd /content/A2A_Multi_Agent_System
+
+before = snapshot_logs()
+
+!python test_multi_intent_query.py
+
+show_new_logs(before)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">/content/A2A_Multi_Agent_System
+=== Multi-Intent ===
+User: My customer ID is 4. Update my email to new@email.com and show my ticket history
+Assistant: Hello Derek,
+
+I've successfully updated your email address to `new@email.com`.
+
+Here is a summary of your ticket history:
+
+*   **Ticket #3:** "Refund pending for last order" (Status: In Progress)
+
+Please let me know if there's anything else I can help you with
+
+
+====== a2a.log (new logs) ======
+INFO:     127.0.0.1:49198 - "GET /.well-known/agent-card.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49198 - "POST / HTTP/1.1" 200 OK
+🛠 [MCP] update_customer_email: called | payload={'customer_id': 4, 'new_email': 'new@email.com'}
+🛠 [MCP] update_customer_email: success | payload={'customer': {'id': 4, 'name': 'Derek Yang', 'email': 'new@email.com', 'phone': '555-4000', 'status': 'active', 'created_at': '2025-12-03 03:38:00', 'updated_at': '2025-12-03 03:42:29'}}
+🛠 [MCP] customer_ticket_history: alias-&gt;get_customer_history | payload={'customer_id': 4}
+🛠 [MCP] get_customer_history: called | payload={'customer_id': 4}
+🛠 [MCP] get_customer_history: success | payload={'count': 1}
+INFO:     127.0.0.1:40950 - "POST / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55738 - "POST / HTTP/1.1" 200 OK
+
+====== mcp.log (new logs) ======
+(no new logs)
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="export-footer">
+        Exported with <a href="https://www.runcell.dev/tool/ipynb-to-html">runcell</a> — convert notebooks to HTML or PDF anytime at runcell.dev.
+    </footer>
+</body>
+</html>
