@@ -1,1 +1,21 @@
+# MCP server
 mcp>=0.1.0
+
+# Google ADK + A2A
+google-adk==1.19.0
+a2a-sdk[http-server]
+
+# Web server stack
+fastapi
+uvicorn
+starlette
+
+# HTTP & async
+httpx
+requests
+anyio
+sniffio
+nest-asyncio
+
+# Utils
+python-dotenv
